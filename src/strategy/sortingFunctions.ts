@@ -1,4 +1,4 @@
-function bubbleSort(nums: number[] | []) {
+function bubbleSort(nums: number[]): number[] {
   if (nums.length === 0) {
     return [];
   }
