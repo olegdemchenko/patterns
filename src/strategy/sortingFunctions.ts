@@ -20,4 +20,8 @@ function bubbleSort(nums: number[]): number[] {
   return res;
 }
 
-export { bubbleSort };
+function mergeSort(nums: number[]):number[] {
+  
+}
+
+export { bubbleSort, mergeSort };
