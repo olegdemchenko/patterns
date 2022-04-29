@@ -20,40 +20,40 @@ function bubbleSort(nums: number[]):number[] {
   return res;
 }
 
-function mergeSort(nums: number[]):number[] {
-  if (nums.length < 2) {
-    return nums;
-  }
-  const midPosition = Math.round(nums.length / 2);
-  const leftHalf = mergeSort(nums.slice(0, midPosition));
-  const rightHalf = mergeSort(nums.slice(midPosition));
-  let leftHalfIndex = 0;
-  let rightHalfIndex = 0;
-  const res: number[] = Array(nums.length);
-  let resIndex = 0;
-  while (leftHalfIndex < leftHalf.length && rightHalfIndex < rightHalf.length) {
-    if (leftHalf[leftHalfIndex] < rightHalf[rightHalfIndex]) {
-      res[resIndex] = leftHalf[leftHalfIndex];
-      leftHalfIndex += 1;
-    } else {
-      res[resIndex] = rightHalf[rightHalfIndex];
-      rightHalfIndex += 1;
-    }
-    resIndex += 1;
-  }
-  while (leftHalfIndex < leftHalf.length) {
-    res[resIndex] = leftHalf[leftHalfIndex];
-    leftHalfIndex += 1;
-    resIndex += 1;
-  }
-  while (rightHalfIndex < rightHalf.length) {
-    res[resIndex] = rightHalf[rightHalfIndex];
-    rightHalfIndex += 1;
-    resIndex += 1;
-  }
-  return res;
-}
 /* eslint-disable no-param-reassign */
+function mergeSort(nums: number[]):void {
+  if (nums.length > 1) {
+    const midPosition = Math.round(nums.length / 2);
+    const leftHalf = nums.slice(0, midPosition);
+    const rightHalf = nums.slice(midPosition);
+    mergeSort(leftHalf);
+    mergeSort(rightHalf);
+    let leftHalfIndex = 0;
+    let rightHalfIndex = 0;
+    let resIndex = 0;
+    while (leftHalfIndex < leftHalf.length && rightHalfIndex < rightHalf.length) {
+      if (leftHalf[leftHalfIndex] < rightHalf[rightHalfIndex]) {
+        nums[resIndex] = leftHalf[leftHalfIndex];
+        leftHalfIndex += 1;
+      } else {
+        nums[resIndex] = rightHalf[rightHalfIndex];
+        rightHalfIndex += 1;
+      }
+      resIndex += 1;
+    }
+    while (leftHalfIndex < leftHalf.length) {
+      nums[resIndex] = leftHalf[leftHalfIndex];
+      leftHalfIndex += 1;
+      resIndex += 1;
+    }
+    while (rightHalfIndex < rightHalf.length) {
+      nums[resIndex] = rightHalf[rightHalfIndex];
+      rightHalfIndex += 1;
+      resIndex += 1;
+    }
+  }
+}
+
 function part(nums: number[], first = 0, last = nums.length - 1):number {
   const pivotValue = nums[first];
   let i = first + 1;
@@ -100,6 +100,7 @@ function makeImmutable(
   };
 }
 
+const immutableMergeSort = makeImmutable(mergeSort);
 const immutableQuickSort = makeImmutable(quickSort);
 
-export { bubbleSort, mergeSort, immutableQuickSort };
+export { bubbleSort, immutableMergeSort, immutableQuickSort };
