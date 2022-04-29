@@ -53,9 +53,47 @@ function mergeSort(nums: number[]):number[] {
   }
   return res;
 }
+/* eslint-disable no-param-reassign */
+function part(nums: number[], first = 0, last = nums.length - 1):number {
+  const pivotValue = nums[first];
+  let i = first + 1;
+  let j = last;
+  let done = false;
+  while (!done) {
+    while (i <= j && nums[i] <= pivotValue) {
+      i += 1;
+    }
+    while (j >= i && nums[j] >= pivotValue) {
+      j -= 1;
+    }
+    if (i > j) {
+      done = true;
+    } else {
+      const x = nums[i];
+      nums[i] = nums[j];
+      nums[j] = x;
+      i += 1;
+      j -= 1;
+    }
+  }
+  nums[first] = nums[j];
+  nums[j] = pivotValue;
+  return j;
+}
+/* eslint-enable no-param-reassign */
+
+function quickSortHelper(nums: number[], l = 0, r = nums.length - 1):void {
+  if (l < r) {
+    const splitPoint = part(nums, l, r);
+    quickSortHelper(nums, l, splitPoint - 1);
+    quickSortHelper(nums, splitPoint + 1, r);
+  }
+}
 
 function quickSort(nums: number[]):number[] {
-
+  const numsCopy = [...nums];
+  quickSortHelper(numsCopy, 0, numsCopy.length - 1);
+  return numsCopy;
 }
 
 export { bubbleSort, mergeSort, quickSort };
