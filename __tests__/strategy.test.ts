@@ -1,4 +1,4 @@
-import { bubbleSort, mergeSort, quickSort } from '../src/strategy/sortingFunctions';
+import { bubbleSort, mergeSort, immutableQuickSort } from '../src/strategy/sortingFunctions';
 
 const unsortedNumbers = [54, 26, 93, 17, 77, 31, 44, 55, 20, -2, -5, 0, 77, 93, 26, 77];
 
@@ -19,6 +19,6 @@ test('check merge sort algorithm', () => {
 });
 
 test('check quick sort algorithm', () => {
-  expect(quickSort([])).toEqual([]);
-  expect(quickSort(unsortedNumbers)).toEqual(sortedNumbers);
+  expect(immutableQuickSort([])).toEqual([]);
+  expect(immutableQuickSort(unsortedNumbers)).toEqual(sortedNumbers);
 });

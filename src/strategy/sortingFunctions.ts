@@ -82,18 +82,24 @@ function part(nums: number[], first = 0, last = nums.length - 1):number {
 }
 /* eslint-enable no-param-reassign */
 
-function quickSortHelper(nums: number[], l = 0, r = nums.length - 1):void {
+function quickSort(nums: number[], l = 0, r = nums.length - 1):void {
   if (l < r) {
     const splitPoint = part(nums, l, r);
-    quickSortHelper(nums, l, splitPoint - 1);
-    quickSortHelper(nums, splitPoint + 1, r);
+    quickSort(nums, l, splitPoint - 1);
+    quickSort(nums, splitPoint + 1, r);
   }
 }
 
-function quickSort(nums: number[]):number[] {
-  const numsCopy = [...nums];
-  quickSortHelper(numsCopy, 0, numsCopy.length - 1);
-  return numsCopy;
+function makeImmutable(
+  sortFunc: (nums: number[], left: number, right: number) => void,
+): (nums: number[]) => number[] {
+  return function (nums: number[]): number[] {
+    const numsCopy = [...nums];
+    sortFunc(numsCopy, 0, numsCopy.length - 1);
+    return numsCopy;
+  };
 }
 
-export { bubbleSort, mergeSort, quickSort };
+const immutableQuickSort = makeImmutable(quickSort);
+
+export { bubbleSort, mergeSort, immutableQuickSort };
