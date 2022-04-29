@@ -1,10 +1,10 @@
 import { immutableBubbleSort, immutableMergeSort, immutableQuickSort } from '../src/strategy/sortingFunctions';
 
-const unsortedNumbers = [54, 26, 93, 17, 77, 31, 44, 55, 20, -2, -5, 0, 77, 93, 26, 77];
-
+let unsortedNumbers: number[];
 let sortedNumbers: number[];
 
-beforeAll(() => {
+beforeEach(() => {
+  unsortedNumbers = Array(1000).fill(0).map(() => Math.random() * 1000 - Math.random() * 1000);
   sortedNumbers = [...unsortedNumbers].sort((a, b) => a - b);
 });
 
