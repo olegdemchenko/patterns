@@ -54,4 +54,8 @@ function mergeSort(nums: number[]):number[] {
   return res;
 }
 
-export { bubbleSort, mergeSort };
+function quickSort(nums: number[]):number[] {
+
+}
+
+export { bubbleSort, mergeSort, quickSort };
