@@ -1,26 +1,23 @@
-function bubbleSort(nums: number[]):number[] {
-  if (nums.length === 0) {
-    return [];
-  }
-  let exchanges = true;
-  let iterationsCount = 0;
-  const res = [...nums];
-  while (exchanges && iterationsCount < nums.length) {
-    exchanges = false;
-    for (let j = 0; j < res.length - 1; j += 1) {
-      if (res[j] > res[j + 1]) {
-        const x = res[j];
-        res[j] = res[j + 1];
-        res[j + 1] = x;
-        exchanges = true;
+/* eslint-disable no-param-reassign */
+function bubbleSort(nums: number[]):void {
+  if (nums.length > 1) {
+    let exchanges = true;
+    let iterationsCount = 0;
+    while (exchanges && iterationsCount < nums.length) {
+      exchanges = false;
+      for (let j = 0; j < nums.length - 1; j += 1) {
+        if (nums[j] > nums[j + 1]) {
+          const x = nums[j];
+          nums[j] = nums[j + 1];
+          nums[j + 1] = x;
+          exchanges = true;
+        }
       }
+      iterationsCount += 1;
     }
-    iterationsCount += 1;
   }
-  return res;
 }
 
-/* eslint-disable no-param-reassign */
 function mergeSort(nums: number[]):void {
   if (nums.length > 1) {
     const midPosition = Math.round(nums.length / 2);
@@ -100,7 +97,8 @@ function makeImmutable(
   };
 }
 
+const immutableBubbleSort = makeImmutable(bubbleSort);
 const immutableMergeSort = makeImmutable(mergeSort);
 const immutableQuickSort = makeImmutable(quickSort);
 
-export { bubbleSort, immutableMergeSort, immutableQuickSort };
+export { immutableBubbleSort, immutableMergeSort, immutableQuickSort };
