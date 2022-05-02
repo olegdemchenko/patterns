@@ -3,8 +3,9 @@ import { ICustomSortArray, ISortAlg } from './interfaces';
 class CustomSortArray extends Array implements ICustomSortArray {
   sortAlg: ISortAlg;
 
-  setSortAlg(sortAlg: ISortAlg): void {
+  setSortAlg(sortAlg: ISortAlg): ICustomSortArray {
     this.sortAlg = sortAlg;
+    return this;
   }
 
   sortByCustomAlg(nums: number[]): ICustomSortArray {

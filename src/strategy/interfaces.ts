@@ -3,7 +3,7 @@ interface ISortAlg {
 }
 
 interface ICustomSortArray {
-  setSortAlg(sortAlg: ISortAlg): void;
+  setSortAlg(sortAlg: ISortAlg): ICustomSortArray;
   sortByCustomAlg(nums: number[]): ICustomSortArray;
 }
 
