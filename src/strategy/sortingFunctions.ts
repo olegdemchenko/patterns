@@ -1,3 +1,5 @@
+import ImmutableSortFunc from './commonTypes';
+
 /* eslint-disable no-param-reassign */
 function bubbleSort(nums: number[]):void {
   if (nums.length > 1) {
@@ -89,7 +91,7 @@ function quickSort(nums: number[], l = 0, r = nums.length - 1):void {
 
 function makeImmutable(
   sortFunc: (nums: number[], left: number, right: number) => void,
-): (nums: number[]) => number[] {
+): ImmutableSortFunc {
   return function (nums: number[]): number[] {
     const numsCopy = [...nums];
     sortFunc(numsCopy, 0, numsCopy.length - 1);
