@@ -11,6 +11,10 @@ class SortAlg implements ISortAlg {
     this.description = desciprtion;
   }
 
+  getDescription(): string {
+    return this.description;
+  }
+
   sort(nums: number[]):number[] {
     return this.sortFunc(nums);
   }

@@ -27,7 +27,16 @@ test('check quick sort algorithm', () => {
 
 test('check CustomSortArray implementation', () => {
   const customData = new CustomSortArray(...unsortedNumbers);
-  expect(customData.setSortAlg(new SortAlg(immutableBubbleSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
-  expect(customData.setSortAlg(new SortAlg(immutableMergeSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
-  expect(customData.setSortAlg(new SortAlg(immutableQuickSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
+  const bubbleSortDesciption = 'Bubble sort';
+  const mergeSortDescription = 'Merge sort';
+  const quickSortDescription = 'Quick sort';
+  customData.setSortAlg(new SortAlg(immutableBubbleSort, bubbleSortDesciption));
+  expect(customData.sortByCustomAlg()).toEqual(sortedNumbers);
+  expect(customData.getAlgDescription()).toBe(bubbleSortDesciption);
+  customData.setSortAlg(new SortAlg(immutableMergeSort, mergeSortDescription));
+  expect(customData.sortByCustomAlg()).toEqual(sortedNumbers);
+  expect(customData.getAlgDescription()).toBe(mergeSortDescription);
+  customData.setSortAlg(new SortAlg(immutableQuickSort, quickSortDescription));
+  expect(customData.sortByCustomAlg()).toEqual(sortedNumbers);
+  expect(customData.getAlgDescription()).toBe(quickSortDescription);
 });
