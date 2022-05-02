@@ -1,4 +1,6 @@
 import { immutableBubbleSort, immutableMergeSort, immutableQuickSort } from '../src/strategy/sortingFunctions';
+import CustomSortArray from '../src/strategy/CustomSortArray';
+import SortAlg from '../src/strategy/SortAlg';
 
 let unsortedNumbers: number[];
 let sortedNumbers: number[];
@@ -21,4 +23,11 @@ test('check merge sort algorithm', () => {
 test('check quick sort algorithm', () => {
   expect(immutableQuickSort([])).toEqual([]);
   expect(immutableQuickSort(unsortedNumbers)).toEqual(sortedNumbers);
+});
+
+test('check CustomSortArray implementation', () => {
+  const customData = new CustomSortArray(...unsortedNumbers);
+  expect(customData.setSortAlg(new SortAlg(immutableBubbleSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
+  expect(customData.setSortAlg(new SortAlg(immutableMergeSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
+  expect(customData.setSortAlg(new SortAlg(immutableQuickSort, '')).sortByCustomAlg()).toEqual(sortedNumbers);
 });
