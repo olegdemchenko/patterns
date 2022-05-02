@@ -8,8 +8,8 @@ class CustomSortArray extends Array implements ICustomSortArray {
     return this;
   }
 
-  sortByCustomAlg(nums: number[]): ICustomSortArray {
-    const sortedNums = this.sortAlg.sort(nums);
+  sortByCustomAlg(): ICustomSortArray {
+    const sortedNums = this.sortAlg.sort(this);
     return new CustomSortArray(...sortedNums);
   }
 }

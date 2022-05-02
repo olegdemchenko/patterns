@@ -4,7 +4,7 @@ interface ISortAlg {
 
 interface ICustomSortArray {
   setSortAlg(sortAlg: ISortAlg): ICustomSortArray;
-  sortByCustomAlg(nums: number[]): ICustomSortArray;
+  sortByCustomAlg(): ICustomSortArray;
 }
 
 export { ISortAlg, ICustomSortArray };
