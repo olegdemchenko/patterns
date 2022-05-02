@@ -6,9 +6,9 @@ class SortAlg implements ISortAlg {
 
   private description: string;
 
-  constructor(sortFunc: ImmutableSortFunc, desciprtion: string) {
+  constructor(sortFunc: ImmutableSortFunc, description: string) {
     this.sortFunc = sortFunc;
-    this.description = desciprtion;
+    this.description = description;
   }
 
   getDescription(): string {
