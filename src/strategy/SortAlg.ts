@@ -2,9 +2,9 @@ import ImmutableSortFunc from './commonTypes';
 import { ISortAlg } from './interfaces';
 
 class SortAlg implements ISortAlg {
-  readonly sortFunc: ImmutableSortFunc;
+  private sortFunc: ImmutableSortFunc;
 
-  readonly description: string;
+  private description: string;
 
   constructor(sortFunc: ImmutableSortFunc, desciprtion: string) {
     this.sortFunc = sortFunc;

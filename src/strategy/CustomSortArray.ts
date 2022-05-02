@@ -1,7 +1,7 @@
 import { ICustomSortArray, ISortAlg } from './interfaces';
 
 class CustomSortArray extends Array implements ICustomSortArray {
-  sortAlg: ISortAlg;
+  private sortAlg: ISortAlg;
 
   getAlgDescription(): string {
     return this.sortAlg.getDescription();
