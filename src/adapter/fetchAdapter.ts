@@ -1,9 +1,9 @@
 interface IFetchAdapterOptions {
   method: string,
-  headers: {
+  headers?: {
     [index: string]: string
   },
-  body: string
+  body?: string
 }
 
 interface IFetchAdapterResponse {
@@ -14,5 +14,5 @@ interface IFetchAdapterResponse {
 }
 
 interface IFetchAdapter {
-  (url: string, options: IFetchAdapterOptions): Promise<IFetchAdapterResponse>
+  (url: string, options?: IFetchAdapterOptions): Promise<IFetchAdapterResponse>
 }
