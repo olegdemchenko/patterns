@@ -3,3 +3,6 @@
 
 ##### Strategy
 A simple implementation of the strategy pattern applied for extending build-in Array type with different sorting algorithms
+
+##### Adapter
+A simplified version of the fetch function, based on XMLHTTPRequest 
