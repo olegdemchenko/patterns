@@ -39,10 +39,10 @@ test('test fetchAdapter post request', async () => {
 });
 
 test('test fetchAdapter post error request', async () => {
-  expect(async () => {
+  await expect(async () => {
     await fetchAdapter(paths.fetchAdapter.userData, {
       method: 'POST',
       body: '',
     });
-  }).toThrow();
+  }).rejects.toThrow();
 });
