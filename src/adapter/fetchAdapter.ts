@@ -8,7 +8,7 @@ interface IFetchAdapterOptions {
 
 interface IFetchAdapterResponse {
   ok: boolean,
-  status: string,
+  status: number,
   text(): Promise<string>,
   json(): Promise<string>,
 }
