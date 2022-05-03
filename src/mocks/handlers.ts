@@ -18,7 +18,7 @@ const handlers = [
     if (req.body === validUserId) {
       return res(
         ctx.status(200),
-        ctx.json(JSON.stringify(userData)),
+        ctx.json(userData),
       );
     }
     return res(
