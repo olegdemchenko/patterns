@@ -15,7 +15,7 @@ const handlers = [
     )
   )),
   rest.post(paths.fetchAdapter.userData, (req, res, ctx) => {
-    if (req.params.userId === validUserId) {
+    if (req.body === validUserId) {
       return res(
         ctx.status(200),
         ctx.json(JSON.stringify(userData)),
