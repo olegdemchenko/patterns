@@ -9,9 +9,9 @@ interface IObserver {
 }
 
 interface IEventEmitter {
-  registerObserver: (observer: IObserver) => void;
-  unregisterObserver: (observer: IObserver) => void;
-  notify: (data: INewsItem) => void;
+  registerObserver: (event: string, observer: IObserver) => void;
+  unregisterObserver: (event:string, observer: IObserver) => void;
+  notify: (event: string, data: INewsItem) => void;
 }
 
 export { IObserver, IEventEmitter, INewsItem };
