@@ -3,8 +3,8 @@
     "jest"
   ],
   "extends": [
-    "airbnb-base",
-    "airbnb-typescript/base"
+    "airbnb",
+    "airbnb-typescript"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
