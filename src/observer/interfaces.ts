@@ -14,4 +14,15 @@ interface IEventEmitter {
   notify: (event: string, data: INewsItem) => void;
 }
 
-export { IObserver, IEventEmitter, INewsItem };
+interface IFeedEmitter {
+  add: (feed: { url: string, refresh: number, eventName?: string }) => void;
+  remove: (feed: string) => void;
+  on: (eventName: string, callback: (item: INewsItem) => void) => void;
+}
+
+export {
+  IObserver,
+  IEventEmitter,
+  INewsItem,
+  IFeedEmitter,
+};
