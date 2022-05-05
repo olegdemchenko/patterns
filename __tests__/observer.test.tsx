@@ -6,18 +6,21 @@ import App from '../src/observer/components/App';
 import { IEventEmitter, INewsItem, IObserver } from '../src/observer/interfaces';
 
 class FakeEmitter implements IEventEmitter {
-  private observers: IObserver[] = [];
+  private observers: {
+    [event: string]: IObserver[];
+  };
 
-  registerObserver(observer: IObserver) {
-    this.observers.push(observer);
+  registerObserver(event: string, observer: IObserver) {
+    this.observers[event].push(observer);
   }
 
-  unregisterObserver(observer: IObserver) {
-    this.observers = this.observers.filter((currObserver) => currObserver === observer);
+  unregisterObserver(event: string, observer: IObserver) {
+    this.observers[event] = this.observers[event]
+      .filter((currObserver) => currObserver !== observer);
   }
 
-  notify(newsItem: INewsItem) {
-    this.observers.forEach((observer) => {
+  notify(event: string, newsItem: INewsItem) {
+    this.observers[event].forEach((observer) => {
       observer.update(newsItem);
     });
   }
@@ -41,7 +44,7 @@ test('test adding new channel', async () => {
   userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
-  testEmitter.notify(fakeNews);
+  testEmitter.notify(fakeRssFeed, fakeNews);
   await waitFor(() => expect(screen.getByText(fakeNews.title)).toBeInTheDocument());
 });
 
