@@ -14,4 +14,4 @@ interface IEventEmitter {
   notify: (data: INewsItem) => void;
 }
 
-export { IObserver, IEventEmitter };
+export { IObserver, IEventEmitter, INewsItem };
