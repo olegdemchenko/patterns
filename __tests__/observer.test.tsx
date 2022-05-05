@@ -3,28 +3,14 @@ import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from '../src/observer/components/App';
-import { IEventEmitter, INewsItem, IObserver } from '../src/observer/interfaces';
+import RSSEventMediator from '../src/observer/RSSEventMediator';
+import { IFeedEmitter, INewsItem } from '../src/observer/interfaces';
 
-class FakeEmitter implements IEventEmitter {
-  private observers: {
-    [event: string]: IObserver[];
-  };
-
-  registerObserver(event: string, observer: IObserver) {
-    this.observers[event].push(observer);
-  }
-
-  unregisterObserver(event: string, observer: IObserver) {
-    this.observers[event] = this.observers[event]
-      .filter((currObserver) => currObserver !== observer);
-  }
-
-  notify(event: string, newsItem: INewsItem) {
-    this.observers[event].forEach((observer) => {
-      observer.update(newsItem);
-    });
-  }
-}
+const fakeRSSFeedEmitter: IFeedEmitter = {
+  add() {},
+  remove() {},
+  on() {},
+};
 
 const fakeRssFeed = 'https://fakerss.com/rss.xml';
 const fakeNews: INewsItem = {
@@ -34,7 +20,7 @@ const fakeNews: INewsItem = {
 };
 
 test('test adding new channel', async () => {
-  const testEmitter = new FakeEmitter();
+  const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
   const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
@@ -49,7 +35,7 @@ test('test adding new channel', async () => {
 });
 
 test('test adding several channels', async () => {
-  const testEmitter = new FakeEmitter();
+  const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
   const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
@@ -65,7 +51,7 @@ test('test adding several channels', async () => {
 });
 
 test('test deleting added channel', async () => {
-  const testEmitter = new FakeEmitter();
+  const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
   const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
