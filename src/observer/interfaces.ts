@@ -5,7 +5,7 @@ interface INewsItem {
 }
 
 interface IObserver {
-  update: (data: INewsItem) => void;
+  update: (event: string, data: INewsItem) => void;
 }
 
 interface IEventEmitter {

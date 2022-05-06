@@ -35,7 +35,7 @@ class RSSEventMediator implements IEventEmitter {
   }
 
   notify(event: string, data: INewsItem) {
-    this.observers[event].forEach((observer) => observer.update(data));
+    this.observers[event].forEach((observer) => observer.update(event, data));
   }
 }
 
