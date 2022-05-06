@@ -52,7 +52,10 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
   };
 
   update(event: string, { title, link, date }: INewsItem): void {
-    this.setState((state) => ({ ...state, [event]: [...state[event], { title, link, date }] }));
+    this.setState((state) => ({
+      currentFeed: state.currentFeed,
+      feeds: { ...state.feeds, [event]: [...state.feeds[event], { title, link, date }] },
+    }));
   }
 
   render() {
