@@ -12,7 +12,7 @@ type AddProps = {
 function AddFeed({ add }: AddProps) {
   const [link, setLink] = useState('');
   return (
-    <Row className="mx-0 bg-dark">
+    <Row className="mx-0 bg-dark rounded-bottom">
       <Col className="p-0" lg={{ span: 8, offset: 2 }}>
         <Form onSubmit={(e) => {
           e.preventDefault();
