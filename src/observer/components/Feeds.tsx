@@ -1,5 +1,8 @@
 import React from 'react';
 import { IEventEmitter, IObserver, INewsItem } from '../interfaces';
+import AddFeed from './AddFeed';
+import FeedsList from './FeedsList';
+import FeedNewsList from './FeedsNewsList';
 
 type FeedsProps = {
   rssEmitter: IEventEmitter;
@@ -33,6 +36,16 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
 
   update(event: string, { title, link, date }: INewsItem): void {
     this.setState((state) => ({ ...state, [event]: [...state[event], { title, link, date }] }));
+  }
+
+  render() {
+    return (
+      <>
+        <AddFeed />
+        <FeedsList />
+        <FeedNewsList />
+      </>
+    );
   }
 }
 
