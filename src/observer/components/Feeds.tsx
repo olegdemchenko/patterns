@@ -61,7 +61,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
   render() {
     return (
       <>
-        <AddFeed />
+        <AddFeed add={this.addFeed} />
         <FeedsList />
         <FeedNewsList />
       </>
