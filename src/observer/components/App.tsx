@@ -12,7 +12,7 @@ function App({ rssEmitter }: AppProps) {
   return (
     <AppContainer>
       <Header />
-      <Feeds />
+      <Feeds rssEmitter={rssEmitter} />
     </AppContainer>
   );
 }
