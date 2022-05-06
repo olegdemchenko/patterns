@@ -39,7 +39,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
     }));
   };
 
-  removeFeed = (feed: string) => () => {
+  removeFeed = (feed: string) => {
     this.emitter.unregisterObserver(feed, this);
     this.setState((state) => {
       const newCurrentFeed = state.currentFeed === feed
@@ -59,10 +59,15 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
   }
 
   render() {
+    const { currentFeed, feeds } = this.state;
     return (
       <>
         <AddFeed add={this.addFeed} />
-        <FeedsList />
+        <FeedsList
+          feeds={Object.keys(feeds)}
+          selectedFeed={currentFeed}
+          removeFeed={this.removeFeed}
+        />
         <FeedNewsList />
       </>
     );
