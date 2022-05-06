@@ -9,7 +9,10 @@ type FeedsProps = {
 };
 
 type FeedsState = {
-  [feedLink: string]: INewsItem[]
+  currentFeed: string,
+  feeds: {
+    [feedLink: string]: INewsItem[]
+  }
 };
 
 class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver {
@@ -17,20 +20,34 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
 
   constructor(props: FeedsProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentFeed: '',
+      feeds: {},
+    };
     this.emitter = props.rssEmitter;
+  }
+
+  getNewCurrentFeed(feeds: string[]):string {
+    return feeds.length > 0 ? feeds[0] : '';
   }
 
   addFeed = (feed: string): void => {
     this.emitter.registerObserver(feed, this);
-    this.setState((state) => ({ ...state, [feed]: [] }));
+    this.setState((state) => ({
+      currentFeed: feed,
+      feeds: { ...state.feeds, [feed]: [] },
+    }));
   };
 
   removeFeed = (feed: string) => () => {
     this.emitter.unregisterObserver(feed, this);
     this.setState((state) => {
-      const filteredState = Object.entries(state).filter(([currFeed]) => currFeed !== feed);
-      return Object.fromEntries(filteredState);
+      const newCurrentFeed = state.currentFeed === feed
+        ? this.getNewCurrentFeed(Object.keys(state.feeds))
+        : state.currentFeed;
+      const filteredFeeds = Object.entries(state.feeds).filter(([currFeed]) => currFeed !== feed);
+
+      return { currentFeed: newCurrentFeed, feeds: Object.fromEntries(filteredFeeds) };
     });
   };
 
