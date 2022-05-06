@@ -7,7 +7,7 @@ type ContainerProps = {
 
 function AppContainer({ children }: ContainerProps) {
   return (
-    <Container className="h-100 shadow-lg rounded">
+    <Container className="h-100 px-0 shadow-lg rounded">
       {children}
     </Container>
   );
