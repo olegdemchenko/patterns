@@ -1,6 +1,6 @@
 import React from 'react';
 import { IEventEmitter } from '../interfaces';
-import Container from './Container';
+import AppContainer from './Container';
 import Header from './Header';
 import Feeds from './Feeds';
 
@@ -10,10 +10,10 @@ type AppProps = {
 
 function App({ rssEmitter }: AppProps) {
   return (
-    <Container>
+    <AppContainer>
       <Header />
       <Feeds />
-    </Container>
+    </AppContainer>
   );
 }
 
