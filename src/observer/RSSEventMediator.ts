@@ -27,6 +27,9 @@ class RSSEventMediator implements IEventEmitter {
     this.feeder.on(event, (item) => {
       this.notify(event, item);
     });
+    if (!this.observers[event]) {
+      this.observers[event] = [];
+    }
     this.observers[event].push(observer);
   }
 
