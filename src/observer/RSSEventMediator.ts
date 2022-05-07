@@ -6,6 +6,8 @@ import {
 } from './interfaces';
 
 class RSSEventMediator implements IEventEmitter {
+  private CORSFreeAPI = 'https://api.codetabs.com/v1/proxy?quest=';
+
   private observers: {
     [event: string]: IObserver[]
   } = {};
@@ -18,7 +20,7 @@ class RSSEventMediator implements IEventEmitter {
 
   registerObserver(event: string, observer: IObserver) {
     this.feeder.add({
-      url: event,
+      url: `${this.CORSFreeAPI}${event}`,
       refresh: 5000,
       eventName: event,
     });
