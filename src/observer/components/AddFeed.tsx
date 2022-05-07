@@ -21,7 +21,7 @@ function AddFeed({ add }: AddProps) {
         >
           <Row className="p-4 pb-5">
             <Col lg="9">
-              <FloatingLabel controlId="rssLinkInput" label="Enter RSS channel adress here">
+              <FloatingLabel controlId="rssLinkInput" label="Enter RSS channel address here">
                 <Form.Control
                   type="text"
                   placeholder="https://somesite.com/rss.xml"
