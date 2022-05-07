@@ -10,8 +10,10 @@ function FeedNewsList({ news }: NewsProp) {
   return (
     <div>
       <hr />
-      {news.map(({ link, title, date }) => (
-        <NewsItem link={link} title={title} date={date} />))}
+      {news.map(({ link, title, date }) => {
+        const key = Math.random().toString(16);
+        return <NewsItem key={key} link={link} title={title} date={date} />;
+      })}
     </div>
   );
 }
