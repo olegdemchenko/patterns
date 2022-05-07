@@ -60,6 +60,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
 
   render() {
     const { currentFeed, feeds } = this.state;
+    const currentFeedNews = feeds[currentFeed] ?? [];
     return (
       <>
         <AddFeed add={this.addFeed} />
@@ -68,7 +69,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
           selectedFeed={currentFeed}
           removeFeed={this.removeFeed}
         />
-        <FeedNewsList />
+        <FeedNewsList news={currentFeedNews} />
       </>
     );
   }
