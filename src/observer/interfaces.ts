@@ -18,6 +18,7 @@ interface IFeedEmitter {
   add: (feed: { url: string, refresh: number, eventName?: string }) => void;
   remove: (feed: string) => void;
   on: (eventName: string, callback: (item: INewsItem) => void) => void;
+  removeAllListeners: (event: string) => void;
 }
 
 export {

@@ -10,6 +10,9 @@ const fakeRSSFeedEmitter: IFeedEmitter = {
   add() {},
   remove() {},
   on() {},
+  removeAllListeners() {
+    return [() => {}];
+  },
 };
 
 const fakeRssFeed = 'https://fakerss.com/rss.xml';

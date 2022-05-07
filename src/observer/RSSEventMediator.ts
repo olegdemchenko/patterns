@@ -19,24 +19,28 @@ class RSSEventMediator implements IEventEmitter {
   }
 
   registerObserver(event: string, observer: IObserver) {
-    this.feeder.add({
-      url: `${this.CORSFreeAPI}${event}`,
-      refresh: 5000,
-      eventName: event,
-    });
-    this.feeder.on(event, (item) => {
-      this.notify(event, item);
-    });
     if (!this.observers[event]) {
       this.observers[event] = [];
+      this.feeder.add({
+        url: `${this.CORSFreeAPI}${event}`,
+        refresh: 5000,
+        eventName: event,
+      });
+      this.feeder.on(event, (item) => {
+        this.notify(event, item);
+      });
     }
     this.observers[event].push(observer);
   }
 
   unregisterObserver(event: string, observer: IObserver) {
-    this.feeder.remove(event);
     this.observers[event] = this.observers[event]
       .filter((currObserver) => currObserver !== observer);
+    if (this.observers[event].length === 0) {
+      this.feeder.remove(event);
+      this.feeder.removeAllListeners(event);
+      delete this.observers[event];
+    }
   }
 
   notify(event: string, data: INewsItem) {

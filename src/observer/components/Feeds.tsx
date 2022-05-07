@@ -63,7 +63,6 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
 
   render() {
     const { currentFeed, feeds } = this.state;
-    console.log(currentFeed);
     const currentFeedNews = feeds[currentFeed] ?? [];
     return (
       <>
