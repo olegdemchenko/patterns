@@ -62,7 +62,7 @@ test('test deleting added channel', async () => {
   await userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
-  const removeChannelButton = screen.getByRole('button', { name: /remove/i });
+  const removeChannelButton = screen.getByRole('button', { name: /close/i });
   userEvent.click(removeChannelButton);
   await waitFor(() => expect(removeChannelButton).not.toBeInTheDocument());
 });
