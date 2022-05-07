@@ -26,8 +26,8 @@ test('test adding new channel', async () => {
   const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
-  const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
-  const searchButton = screen.getByRole('button', { name: /search/i });
+  const rssLinksInput = screen.getByRole('textbox', { name: /enter rss/i });
+  const searchButton = screen.getByRole('button', { name: /add/i });
   expect(rssLinksInput).toBeInTheDocument();
   expect(searchButton).toBeInTheDocument();
   userEvent.type(rssLinksInput, fakeRssFeed);
@@ -41,8 +41,8 @@ test('test adding several channels', async () => {
   const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
-  const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
-  const searchButton = screen.getByRole('button', { name: /search/i });
+  const rssLinksInput = screen.getByRole('textbox', { name: /enter rss/i });
+  const searchButton = screen.getByRole('button', { name: /add/i });
   userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
@@ -57,8 +57,8 @@ test('test deleting added channel', async () => {
   const testEmitter = new RSSEventMediator(fakeRSSFeedEmitter);
   render(<App rssEmitter={testEmitter} />);
 
-  const rssLinksInput = screen.getByRole('textbox', { name: /rss link/i });
-  const searchButton = screen.getByRole('button', { name: /search/i });
+  const rssLinksInput = screen.getByRole('textbox', { name: /enter rss/i });
+  const searchButton = screen.getByRole('button', { name: /add/i });
   userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
