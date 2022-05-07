@@ -26,7 +26,6 @@ function AddFeed({ add }: AddProps) {
                 <Form.Control
                   type="text"
                   placeholder="https://somesite.com/rss.xml"
-                  name="rss link"
                   onChange={(e) => setLink(e.target.value)}
                   value={link}
                 />
