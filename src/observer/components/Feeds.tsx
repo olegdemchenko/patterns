@@ -55,6 +55,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
       return { currentFeed: newCurrentFeed, feeds: Object.fromEntries(filteredFeeds) };
     });
   };
+  /* eslint-disable react/no-unused-class-component-methods */
 
   update(event: string, { title, link, date }: INewsItem): void {
     this.setState((state) => ({
