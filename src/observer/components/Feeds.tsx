@@ -27,7 +27,9 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
     this.emitter = props.rssEmitter;
   }
 
-  getNewCurrentFeed(feeds: string[]):string {
+  getNewCurrentFeed():string {
+    const { feeds: feedsEntries } = this.state;
+    const feeds = Object.keys(feedsEntries);
     return feeds.length > 0 ? feeds[0] : '';
   }
 
@@ -47,7 +49,7 @@ class Feeds extends React.Component<FeedsProps, FeedsState> implements IObserver
     this.emitter.unregisterObserver(feed, this);
     this.setState((state) => {
       const newCurrentFeed = state.currentFeed === feed
-        ? this.getNewCurrentFeed(Object.keys(state.feeds))
+        ? this.getNewCurrentFeed()
         : state.currentFeed;
       const filteredFeeds = Object.entries(state.feeds).filter(([currFeed]) => currFeed !== feed);
       return { currentFeed: newCurrentFeed, feeds: Object.fromEntries(filteredFeeds) };
