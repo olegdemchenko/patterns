@@ -17,6 +17,7 @@ function AddFeed({ add }: AddProps) {
         <Form onSubmit={(e) => {
           e.preventDefault();
           add(link);
+          setLink('');
         }}
         >
           <Row className="p-4 pb-5">
