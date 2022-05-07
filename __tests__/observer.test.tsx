@@ -30,7 +30,7 @@ test('test adding new channel', async () => {
   const searchButton = screen.getByRole('button', { name: /add/i });
   expect(rssLinksInput).toBeInTheDocument();
   expect(searchButton).toBeInTheDocument();
-  userEvent.type(rssLinksInput, fakeRssFeed);
+  await userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
   testEmitter.notify(fakeRssFeed, fakeNews);
@@ -43,12 +43,12 @@ test('test adding several channels', async () => {
 
   const rssLinksInput = screen.getByRole('textbox', { name: /enter rss/i });
   const searchButton = screen.getByRole('button', { name: /add/i });
-  userEvent.type(rssLinksInput, fakeRssFeed);
+  await userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
 
   const secondFakeRssFeed = 'https://secondfakerss.com/rss.xml';
-  userEvent.type(rssLinksInput, secondFakeRssFeed);
+  await userEvent.type(rssLinksInput, secondFakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(secondFakeRssFeed)).toBeInTheDocument());
 });
@@ -59,7 +59,7 @@ test('test deleting added channel', async () => {
 
   const rssLinksInput = screen.getByRole('textbox', { name: /enter rss/i });
   const searchButton = screen.getByRole('button', { name: /add/i });
-  userEvent.type(rssLinksInput, fakeRssFeed);
+  await userEvent.type(rssLinksInput, fakeRssFeed);
   userEvent.click(searchButton);
   await waitFor(() => expect(screen.getByText(fakeRssFeed)).toBeInTheDocument());
   const removeChannelButton = screen.getByRole('button', { name: /remove/i });
