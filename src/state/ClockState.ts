@@ -1,6 +1,8 @@
 import { IClockState, IClock } from './interfaces';
 
 class ClockState implements IClockState {
+  private readonly stateName = 'clock';
+
   constructor(
     private clock: IClock,
   ) {
@@ -20,7 +22,7 @@ class ClockState implements IClockState {
   tick() {}
 
   getCurrentMode(): 'clock' {
-    return 'clock';
+    return this.stateName;
   }
 }
 
