@@ -41,3 +41,15 @@ test('check clock state behavior', () => {
   expect(clock.hours()).toBe('03');
   expect(clock.minutes()).toBe('03');
 });
+
+test('check alarm state behavior', () => {
+  expect(clock.getCurrentMode()).toBe('clock');
+  clock.clickMode();
+  expect(clock.getCurrentMode()).toBe('alarm');
+  clock.clickH();
+  clock.clickM();
+  clock.clickMode();
+  expect(clock.getCurrentMode()).toBe('clock');
+  expect(clock.alarmHours()).toBe('01');
+  expect(clock.alarmMinutes()).toBe('01');
+});
