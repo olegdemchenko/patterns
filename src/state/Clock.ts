@@ -1,4 +1,5 @@
 import { IClock, IClockState } from './interfaces';
+import ClockState from './ClockState';
 
 class Clock implements IClock, IClockState {
   private time: {
@@ -6,11 +7,17 @@ class Clock implements IClock, IClockState {
     minutes: number;
   };
 
+  private clockState: IClockState;
+
+  private currentState: IClockState;
+
   constructor(hours: number, minutes: number) {
     this.time = {
       hours,
       minutes,
     };
+    this.clockState = new ClockState(this);
+    this.currentState = this.clockState;
     setInterval(() => {
       this.tick();
     }, 60000);
@@ -28,9 +35,13 @@ class Clock implements IClock, IClockState {
 
   longClickMode() {}
 
-  clickH() {}
+  clickH() {
+    this.currentState.clickH();
+  }
 
-  clickM() {}
+  clickM() {
+    this.currentState.clickM();
+  }
 
   tick() {
     if (this.minutes() === '59') {
@@ -65,8 +76,8 @@ class Clock implements IClock, IClockState {
     return '';
   }
 
-  getCurrentMode(): 'clock' {
-    return 'clock';
+  getCurrentMode() {
+    return this.currentState.getCurrentMode();
   }
 }
 
