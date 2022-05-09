@@ -1,6 +1,5 @@
 interface IClockState {
   clickMode(): void;
-  longClickMode(): void;
   clickH(): void;
   clickM(): void;
   tick(): void;
@@ -8,6 +7,9 @@ interface IClockState {
 }
 
 interface IClock {
+  increaseH(): void;
+  increaseM(): void;
+  longClickMode(): void;
   isAlarmOn(): boolean;
   isAlarmTime(): boolean;
   minutes(): string;
