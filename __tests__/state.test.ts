@@ -11,7 +11,7 @@ afterAll(() => {
 });
 
 beforeEach(() => {
-  clock = new Clock();
+  clock = new Clock(0, 0);
 });
 
 test('check time changing in clock state', () => {
