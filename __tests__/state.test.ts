@@ -24,4 +24,7 @@ test('check time changing in clock state', () => {
   jest.advanceTimersByTime(3600000);
   expect(clock.minutes()).toBe('01');
   expect(clock.hours()).toBe('01');
+  jest.advanceTimersByTime(24 * 60 * 60 * 1000);
+  expect(clock.minutes()).toBe('01');
+  expect(clock.hours()).toBe('01');
 });
