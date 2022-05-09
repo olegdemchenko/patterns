@@ -4,13 +4,16 @@ interface IClockState {
   clickH(): void;
   clickM(): void;
   tick(): void;
+  getCurrentMode(): 'alarm' | 'clock' | 'bell';
+}
+
+interface IClock {
   isAlarmOn(): boolean;
-  isAlarmTime() :boolean;
+  isAlarmTime(): boolean;
   minutes(): string;
   hours(): string;
   alarmMinutes(): string;
   alarmHours(): string;
-  getCurrentMode(): 'alarm' | 'clock' | 'bell';
 }
 
-export default IClockState;
+export { IClockState, IClock };

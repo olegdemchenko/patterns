@@ -1,6 +1,6 @@
-import IClockState from './interfaces';
+import { IClock, IClockState } from './interfaces';
 
-class Clock implements IClockState {
+class Clock implements IClock, IClockState {
   clickMode() {}
 
   longClickMode() {}
