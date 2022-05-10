@@ -21,7 +21,9 @@ class AlarmState implements IClockState {
     this.clock.increaseM('alarm');
   }
 
-  tick() {}
+  tick() {
+    this.clock.changeState('clickMode');
+  }
 
   getCurrentMode(): 'alarm' {
     return this.stateName;

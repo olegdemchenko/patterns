@@ -1,6 +1,7 @@
 import { IClock, IClockState } from './interfaces';
 import ClockState from './ClockState';
 import AlarmState from './AlarmState';
+import BellState from './BellState';
 
 type Time = {
   hours: number;
@@ -20,6 +21,8 @@ class Clock implements IClock, IClockState {
 
   private currentState: IClockState;
 
+  private isAlarmActive: boolean;
+
   constructor(hours: number, minutes: number) {
     this.time = {
       hours,
@@ -31,6 +34,8 @@ class Clock implements IClock, IClockState {
     };
     this.clockState = new ClockState(this);
     this.alarmState = new AlarmState(this);
+    this.bellState = new BellState(this);
+    this.isAlarmActive = false;
     this.currentState = this.clockState;
     setInterval(() => {
       this.tick();
@@ -51,7 +56,9 @@ class Clock implements IClock, IClockState {
     this.currentState.clickMode();
   }
 
-  longClickMode() {}
+  longClickMode() {
+    this.isAlarmActive = true;
+  }
 
   clickH() {
     this.currentState.clickH();
@@ -66,13 +73,14 @@ class Clock implements IClock, IClockState {
       this.increaseH('time');
     }
     this.increaseM('time');
+    this.currentState.tick();
   }
 
   changeState(event: string) {
     const clickModePaths = {
       alarm: this.clockState,
       clock: this.alarmState,
-      bell: this.bellState,
+      bell: this.clockState,
     };
     const tickPaths = {
       bell: this.clockState,
@@ -85,11 +93,14 @@ class Clock implements IClock, IClockState {
   }
 
   isAlarmOn() {
-    return false;
+    return this.isAlarmActive;
   }
 
   isAlarmTime() {
-    return false;
+    const isAlarmTime = this.isAlarmOn()
+      && this.time.hours === this.alarmTime.hours
+      && this.time.minutes === this.alarmTime.minutes;
+    return isAlarmTime;
   }
 
   minutes() {

@@ -21,7 +21,11 @@ class ClockState implements IClockState {
     this.clock.increaseM('time');
   }
 
-  tick() {}
+  tick() {
+    if (this.clock.isAlarmTime()) {
+      this.clock.changeState('tick');
+    }
+  }
 
   getCurrentMode(): 'clock' {
     return this.stateName;
