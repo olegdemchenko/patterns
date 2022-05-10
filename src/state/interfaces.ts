@@ -7,6 +7,7 @@ interface IClockState {
 }
 
 interface IClock {
+  changeState(event: string): void;
   increaseH(timeType: string): void;
   increaseM(timeType: string): void;
   longClickMode(): void;

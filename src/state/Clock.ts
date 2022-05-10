@@ -1,13 +1,21 @@
 import { IClock, IClockState } from './interfaces';
 import ClockState from './ClockState';
 
+type Time = {
+  hours: number;
+  minutes: number;
+};
+
 class Clock implements IClock, IClockState {
-  private time: {
-    hours: number;
-    minutes: number;
-  };
+  private time: Time;
+
+  private alarmTime: Time;
 
   private clockState: IClockState;
+
+  private alarmState: IClockState;
+
+  private bellState: IClockState;
 
   private currentState: IClockState;
 
@@ -15,6 +23,10 @@ class Clock implements IClock, IClockState {
     this.time = {
       hours,
       minutes,
+    };
+    this.alarmTime = {
+      hours: 0,
+      minutes: 0,
     };
     this.clockState = new ClockState(this);
     this.currentState = this.clockState;
@@ -33,7 +45,9 @@ class Clock implements IClock, IClockState {
     this[timeState].hours = (this[timeState].hours + 1) % 24;
   }
 
-  clickMode() {}
+  clickMode() {
+    this.currentState.clickMode();
+  }
 
   longClickMode() {}
 
@@ -50,6 +64,22 @@ class Clock implements IClock, IClockState {
       this.increaseH('time');
     }
     this.increaseM('time');
+  }
+
+  changeState(event: string) {
+    const clickModePaths = {
+      alarm: this.clockState,
+      clock: this.alarmState,
+      bell: this.bellState,
+    };
+    const tickPaths = {
+      bell: this.clockState,
+      clock: this.bellState,
+      alarm: this.alarmState,
+    };
+    const currentState = this.getCurrentMode();
+    const nextState = event === 'clickMode' ? clickModePaths[currentState] : tickPaths[currentState];
+    this.currentState = nextState;
   }
 
   isAlarmOn() {
