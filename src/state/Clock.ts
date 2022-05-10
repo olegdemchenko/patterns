@@ -1,5 +1,6 @@
 import { IClock, IClockState } from './interfaces';
 import ClockState from './ClockState';
+import AlarmState from './AlarmState';
 
 type Time = {
   hours: number;
@@ -29,6 +30,7 @@ class Clock implements IClock, IClockState {
       minutes: 0,
     };
     this.clockState = new ClockState(this);
+    this.alarmState = new AlarmState(this);
     this.currentState = this.clockState;
     setInterval(() => {
       this.tick();
@@ -92,20 +94,26 @@ class Clock implements IClock, IClockState {
 
   minutes() {
     const { minutes } = this.time;
-    return minutes < 10 ? `0${minutes}` : `${minutes}`;
+    return this.stringifyTime(minutes);
   }
 
   hours() {
     const { hours } = this.time;
-    return hours < 10 ? `0${hours}` : `${hours}`;
+    return this.stringifyTime(hours);
+  }
+
+  stringifyTime(time: number) {
+    return time < 10 ? `0${time}` : `${time}`;
   }
 
   alarmMinutes() {
-    return '';
+    const { minutes } = this.alarmTime;
+    return this.stringifyTime(minutes);
   }
 
   alarmHours() {
-    return '';
+    const { hours } = this.alarmTime;
+    return this.stringifyTime(hours);
   }
 
   getCurrentMode() {
