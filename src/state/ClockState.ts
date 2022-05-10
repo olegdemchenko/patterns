@@ -9,7 +9,9 @@ class ClockState implements IClockState {
     this.clock = clock;
   }
 
-  clickMode() {}
+  clickMode() {
+    this.clock.changeState('clickMode');
+  }
 
   clickH() {
     this.clock.increaseH('time');
