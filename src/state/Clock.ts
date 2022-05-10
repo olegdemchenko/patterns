@@ -23,12 +23,14 @@ class Clock implements IClock, IClockState {
     }, 60000);
   }
 
-  increaseM() {
-    this.time.minutes = (this.time.minutes + 1) % 60;
+  increaseM(timeType: string) {
+    const timeState = timeType === 'alarm' ? 'alarmTime' : 'time';
+    this[timeState].minutes = (this[timeState].minutes + 1) % 60;
   }
 
-  increaseH() {
-    this.time.hours = (this.time.hours + 1) % 24;
+  increaseH(timeType: string) {
+    const timeState = timeType === 'alarm' ? 'alarmTime' : 'time';
+    this[timeState].hours = (this[timeState].hours + 1) % 24;
   }
 
   clickMode() {}
@@ -45,9 +47,9 @@ class Clock implements IClock, IClockState {
 
   tick() {
     if (this.minutes() === '59') {
-      this.increaseH();
+      this.increaseH('time');
     }
-    this.increaseM();
+    this.increaseM('time');
   }
 
   isAlarmOn() {

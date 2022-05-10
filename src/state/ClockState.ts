@@ -12,11 +12,11 @@ class ClockState implements IClockState {
   clickMode() {}
 
   clickH() {
-    this.clock.increaseH();
+    this.clock.increaseH('time');
   }
 
   clickM() {
-    this.clock.increaseM();
+    this.clock.increaseM('time');
   }
 
   tick() {}

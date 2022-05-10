@@ -7,8 +7,8 @@ interface IClockState {
 }
 
 interface IClock {
-  increaseH(): void;
-  increaseM(): void;
+  increaseH(timeType: string): void;
+  increaseM(timeType: string): void;
   longClickMode(): void;
   isAlarmOn(): boolean;
   isAlarmTime(): boolean;
