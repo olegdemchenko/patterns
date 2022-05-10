@@ -6,3 +6,6 @@ A simple implementation of the strategy pattern applied for extending build-in A
 
 ##### Adapter
 A simplified version of the fetch function, based on XMLHTTPRequest 
+
+##### Observer
+RSS reading app, based on implementation of the Observer pattern
