@@ -53,3 +53,18 @@ test('check alarm state behavior', () => {
   expect(clock.alarmHours()).toBe('01');
   expect(clock.alarmMinutes()).toBe('01');
 });
+
+test('check bell state behavior', () => {
+  expect(clock.getCurrentMode()).toBe('clock');
+  clock.clickMode();
+  expect(clock.getCurrentMode()).toBe('alarm');
+  clock.clickH();
+  clock.clickM();
+  clock.clickMode();
+  clock.longClickMode();
+  expect(clock.getCurrentMode()).toBe('clock');
+  jest.advanceTimersByTime(61 * 60 * 1000);
+  expect(clock.getCurrentMode()).toBe('bell');
+  clock.clickMode();
+  expect(clock.getCurrentMode()).toBe('clock');
+});
